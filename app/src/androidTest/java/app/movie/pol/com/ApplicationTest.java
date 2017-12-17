@@ -1,4 +1,4 @@
-package app.movie.tutorial.com;
+package app.movie.pol.com;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

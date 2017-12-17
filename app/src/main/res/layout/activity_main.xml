@@ -1,15 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="app.movie.tutorial.com.activity.MainActivity">
+    tools:context="app.movie.pol.com.activity.MovieDisplayList"
+    android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:scrollbars="vertical"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="100dp"
+        android:background="@color/colorGreyLight">
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="245dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:text="Type movie title this hi a fhello message"
+            android:layout_marginTop="34dp"
+            android:layout_marginLeft="70dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+        <EditText
+            android:id="@+id/movieTitle"
+            android:layout_width="245dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:hint="Type movie title"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="50dp"
+            app:layout_constraintLeft_toLeftOf="parent"  />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+        <Button
+            android:id="@+id/cerca"
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            android:text="Cerca"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+    </LinearLayout>
 </LinearLayout>

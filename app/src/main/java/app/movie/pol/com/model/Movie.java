@@ -1,4 +1,4 @@
-package app.movie.tutorial.com.model;
+package app.movie.pol.com.model;
 
 import com.google.gson.annotations.SerializedName;
 
