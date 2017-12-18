@@ -36,21 +36,17 @@ public class MoviesAdapterPol extends RecyclerView.Adapter<MoviesAdapterPol.Movi
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
         LinearLayout moviesLayout;
         TextView movieTitle;
-        //TextView data;
-        //TextView movieDescription;
         TextView rating;
         ImageView movieImage;
-        TextView popularity;
+        TextView votes;
 
         public MovieViewHolder(View v) {
             super(v);
             moviesLayout = (LinearLayout) v.findViewById(R.id.movies_layoutPol);
             movieImage = (ImageView) v.findViewById(R.id.movie_imagePol);
             movieTitle = (TextView) v.findViewById(R.id.titlePol);
-            //data = (TextView) v.findViewById(R.id.date);
-            //movieDescription = (TextView) v.findViewById(R.id.description);
             rating = (TextView) v.findViewById(R.id.ratingPol);
-            popularity = (TextView) v.findViewById(R.id.popularityPol);
+            votes = (TextView) v.findViewById(R.id.votesPol);
         }
     }
 
@@ -72,10 +68,8 @@ public class MoviesAdapterPol extends RecyclerView.Adapter<MoviesAdapterPol.Movi
                 .error(android.R.drawable.sym_def_app_icon)
                 .into(holder.movieImage);
         holder.movieTitle.setText(movies.get(position).getTitle());
-        //holder.data.setText(movies.get(position).getReleaseDate());
-        //holder.movieDescription.setText(movies.get(position).getOverview());
         holder.rating.setText(movies.get(position).getVoteAverage().toString());
-        holder.popularity.setText(movies.get(position).getVoteCount().toString());
+        holder.votes.setText(movies.get(position).getVoteCount().toString());
     }
 
     @Override

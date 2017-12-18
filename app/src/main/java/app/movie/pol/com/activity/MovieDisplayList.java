@@ -1,15 +1,18 @@
 package app.movie.pol.com.activity;
 
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.ProgressBar;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import app.movie.pol.com.R;
-import app.movie.pol.com.adapter.MoviesAdapter;
 import app.movie.pol.com.adapter.MoviesAdapterPol;
 import app.movie.pol.com.model.Movie;
 import app.movie.pol.com.model.MovieResponse;
@@ -53,6 +56,13 @@ public class MovieDisplayList extends AppCompatActivity {
     // set the base url
     public void connectAndGetApiData(String titol){
 
+
+        final ProgressDialog progDialog = new ProgressDialog(MovieDisplayList.this);
+        progDialog.setIndeterminate(true);              // Tipus de progressbar
+        progDialog.setTitle("The Movie Database");
+        progDialog.setMessage("Consultant la cerca...");
+        progDialog.show();
+
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
@@ -72,11 +82,10 @@ public class MovieDisplayList extends AppCompatActivity {
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
                 List<Movie> movies = response.body().getResults();
 
-                recyclerView.setAdapter(new MoviesAdapter(movies, R.layout.list_item_movie, getApplicationContext()));
                 recyclerView.setAdapter(new MoviesAdapterPol(movies, R.layout.list_item_movie_pol, getApplicationContext()));
 
                 Log.d(TAG, "Number of movies received: " + movies.size());
-
+                stopProgDialog(progDialog);
             }
 
             @Override
@@ -84,6 +93,16 @@ public class MovieDisplayList extends AppCompatActivity {
                 Log.e(TAG, throwable.toString());
             }
         });
+    }
+
+    private void stopProgDialog(final ProgressDialog progDialog){
+        final Timer t = new Timer();
+        t.schedule(new TimerTask() {
+            public void run() {
+                progDialog.dismiss();       // Tanca progressbar
+                t.cancel();                 // Cancela el timer
+            }
+        }, 2000);                    // Delay de 2s per mostrar la informació
     }
 
 
